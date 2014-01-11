@@ -24,12 +24,12 @@ This repository contains **Dockerfile** of [Node.js](http://nodejs.org/) for [Do
 
 #### Run `node`
 
-    docker run -i -t dockerfile/nodejs node
+    docker run dockerfile/nodejs node
 
 (Alternatively, use [dockerfile/node](https://github.com/dockerfile/node) executable image.)
 
 #### Run `npm`
 
-    docker run -i -t dockerfile/nodejs npm
+    docker run dockerfile/nodejs npm
 
 (Alternatively, use [dockerfile/npm](https://github.com/dockerfile/npm) executable image.)
