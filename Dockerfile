@@ -15,3 +15,6 @@ RUN apt-get install -y nodejs
 
 # Append to $PATH variable.
 RUN echo '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bash_profile
+
+# Define default command.
+CMD ["node"]

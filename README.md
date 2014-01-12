@@ -15,7 +15,7 @@ This repository contains **Dockerfile** of [Node.js](http://nodejs.org/) for [Do
 
 2. Download [trusted build](https://index.docker.io/u/dockerfile/nodejs/) from public [Docker Registry](https://index.docker.io/): `docker pull dockerfile/nodejs`
 
-   (alternatively, you can build an image from Dockerfile: `docker build -t="dockerfile/nodejs" .`)
+   (alternatively, you can build an image from Dockerfile: `docker build -t="dockerfile/nodejs" github.com/dockerfile/nodejs`)
 
 
 ### Usage
@@ -24,7 +24,7 @@ This repository contains **Dockerfile** of [Node.js](http://nodejs.org/) for [Do
 
 #### Run `node`
 
-    docker run -i -rm -t dockerfile/nodejs node
+    docker run -i -rm -t dockerfile/nodejs
 
 #### Run `npm`
 
