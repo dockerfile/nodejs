@@ -19,7 +19,7 @@ RUN echo '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bash_pro
 VOLUME ["/data"]
 
 # Define working directory.
-WORKDIR "/data"
+WORKDIR /data
 
 # Define default command.
 CMD ["node"]
