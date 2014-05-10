@@ -20,12 +20,12 @@ This repository contains **Dockerfile** of [Node.js](http://nodejs.org/) for [Do
 
 ### Usage
 
-    docker run -i -t dockerfile/nodejs bash
+    docker run -it --rm dockerfile/nodejs
 
 #### Run `node`
 
-    docker run -i --rm -t dockerfile/nodejs
+    docker run -it --rm dockerfile/nodejs node
 
 #### Run `npm`
 
-    docker run -i --rm -t dockerfile/nodejs npm
+    docker run -it --rm dockerfile/nodejs npm

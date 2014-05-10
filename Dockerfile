@@ -22,4 +22,4 @@ VOLUME ["/data"]
 WORKDIR /data
 
 # Define default command.
-CMD ["node"]
+CMD ["bash"]
