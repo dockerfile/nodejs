@@ -19,7 +19,6 @@ RUN \
   CXX="g++ -Wno-unused-local-typedefs" make install && \
   cd /tmp && \
   rm -rf /tmp/node-v* && \
-  npm install -g bower grunt-cli && \
   echo '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bash_profile
 
 # Define mountable directories.
