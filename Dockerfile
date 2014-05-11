@@ -5,15 +5,22 @@
 #
 
 # Pull base image.
-FROM dockerfile/ubuntu
+FROM dockerfile/python
 
 # Install Node.js
-RUN add-apt-repository -y ppa:chris-lea/node.js
-RUN apt-get update
-RUN apt-get install -y nodejs
-
-# Append to $PATH variable.
-RUN echo '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bash_profile
+RUN \
+  cd /tmp && \
+  wget http://nodejs.org/dist/node-latest.tar.gz && \
+  tar xvzf node-latest.tar.gz && \
+  rm -f node-latest.tar.gz && \
+  cd node-v* && \
+  ./configure && \
+  CXX="g++ -Wno-unused-local-typedefs" make && \
+  CXX="g++ -Wno-unused-local-typedefs" make install && \
+  cd /tmp && \
+  rm -rf /tmp/node-v* && \
+  npm install -g bower grunt-cli && \
+  echo '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bash_profile
 
 # Define mountable directories.
 VOLUME ["/data"]

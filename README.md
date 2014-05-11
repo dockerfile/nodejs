@@ -6,7 +6,7 @@ This repository contains **Dockerfile** of [Node.js](http://nodejs.org/) for [Do
 
 ### Dependencies
 
-* [dockerfile/ubuntu](http://dockerfile.github.io/#/ubuntu)
+* [dockerfile/python](http://dockerfile.github.io/#/python)
 
 
 ### Installation
