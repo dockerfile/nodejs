@@ -21,9 +21,6 @@ RUN \
   rm -rf /tmp/node-v* && \
   echo '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bash_profile
 
-# Define mountable directories.
-VOLUME ["/data"]
-
 # Define working directory.
 WORKDIR /data
 
