@@ -20,7 +20,7 @@ RUN \
   cd /tmp && \
   rm -rf /tmp/node-v* && \
   npm install -g npm && \
-  echo '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
+  echo -e '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
 
 # Define working directory.
 WORKDIR /data
