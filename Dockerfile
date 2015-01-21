@@ -4,8 +4,6 @@
 # https://github.com/dockerfile/nodejs
 #
 
-#MAINTAINER Fernando Mayo <fernando@tutum.co>, Feng Honglin <hfeng@tutum.co>
-
 # Pull base image.
 FROM dockerfile/ubuntu
 
@@ -24,7 +22,7 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   npm install -g n && \
   n ${nodeVersion} && \
-  echo -e '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
+  echo '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
 
 # Define working directory.
 WORKDIR /data
