@@ -6,7 +6,7 @@ This repository contains **Dockerfile** of [Node.js](http://nodejs.org/) for [Do
 
 ### Base Docker Image
 
-* [dockerfile/python](http://dockerfile.github.io/#/python)
+* [dockerfile/ubuntu](http://dockerfile.github.io/#/ubuntu)
 
 
 ### Installation
