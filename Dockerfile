@@ -7,10 +7,10 @@
 # Pull base image.
 FROM dockerfile/python
 
-# Install Node.js
+# Install Node.js and change source to aliyun mirrors from taobao in China
 RUN \
   cd /tmp && \
-  wget http://nodejs.org/dist/node-latest.tar.gz && \
+  wget http://npm.taobao.org/mirrors/node/node-latest.tar.gz && \
   tar xvzf node-latest.tar.gz && \
   rm -f node-latest.tar.gz && \
   cd node-v* && \
@@ -21,7 +21,9 @@ RUN \
   rm -rf /tmp/node-v* && \
   npm install -g npm && \
   printf '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
-
+  npm install -g cnpm --registry=https://registry.npm.taobao.org
+  cnpm install -g express srails loopback mongodb mysql moogose
+  
 # Define working directory.
 WORKDIR /data
 
