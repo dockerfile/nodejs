@@ -9,6 +9,7 @@ FROM ubuntu
 
 # Install Node.js and change source to aliyun mirrors from taobao in China
 RUN \
+  apt-get install wget curl git
   cd /tmp && \
   wget http://npm.taobao.org/mirrors/node/node-latest.tar.gz && \
   tar xvzf node-latest.tar.gz && \
