@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM dockerfile/python
+FROM ubuntu
 
 # Install Node.js and change source to aliyun mirrors from taobao in China
 RUN \
