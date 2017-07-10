@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html ng-app="login">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    
+    <title>SOCO CART DELIVERY ESTIMATION</title>
+
+    <meta name="description" content="User login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="assets/css/ace.min.css" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="assets/css/ace-part2.min.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <script src="assets/js/AngularJS1.3.12.min.js"></script>
+    <script src="RouteConfig/route.js"></script>
+    <script src="assets/js/angular-animate.js"></script>
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+   <script src="Alertjs/notify.js"></script>
+    <script src="cookies/Angular-Cookies.js"></script>
+    <script src="controller/login.js"></script>
+  
+
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    
+
+<style>
+    #divLoading
+{
+display : none;
+}
+#divLoading.show
+{
+display : block;
+position : fixed;
+z-index: 100;
+background-image : url("App_Themes/Images/LoadingPanel.gif");
+/*background-color:#666;*/
+background-color:rgba(0, 0, 0, 0.22);
+
+opacity : 10.4;
+background-repeat : no-repeat;
+background-position : center;
+left : 0;
+bottom : 0;
+right : 0;
+top : 0;
+}
+ 
+    </style>
+
+</head>
+
+<body class="login-layout light-login">
+    <div class="main-container">
+        <div class="main-content">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="login-container">
+                        <!--<div flash-message="10000" style="z-index:1000000"></div>-->
+                        <div class="center">
+                            <h2>
+                                <span class="red">SOCO CART DELIVERY </span>
+                                <span class="grey" id="id-text2">SYSTEM</span>
+                            </h2>
+                            <h4 class="blue" id="id-company-text">&copy; St.Onge Company</h4>
+                        </div>
+
+                        <div class="space-4"></div>
+
+                                        <div id="divLoading"> 
+                                         </div>
+
+                        <div class="position-relative">
+                            <div id="login-box" style="margin-top:15%" class="login-box visible widget-box no-border" ng-controller="LoginCtrl">
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <h4 class="header blue lighter bigger">
+                                            <i class="ace-icon fa fa-pencil"></i> Please Enter Your Information
+                                        </h4>
+
+                                        <div class="space-6"></div>
+
+                                        <form name="loginbox" ng-submit="submitForm()" novalidate>
+                                            <fieldset>
+                                                <div class="form-group" ng-class="{ 'has-error' :loginbox.Email.$invalid && !loginbox.Email.$pristine }">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="email" name="Email" class="form-control" placeholder="Email" title="Please enter the Email Address" 
+                                                            
+                                                            
+                                                            ng-model="login.Email" ng-required="true" />
+                                                            <i class="ace-icon fa fa-user"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="loginbox.Email.$error.required && (loginbox.Email.$dirty || submitted)" class="help-block">Email is required.</p>
+                                                    <p ng-show="loginbox.Email.$error.email && (loginbox.Email.$dirty || submitted)" class="help-block">Enter a valid Email.</p>
+                                                    <!--<p ng-show="loginbox.Email.$invalid && !loginbox.Email.$pristine" class="help-block">Enter a valid email.</p>-->
+                                                </div>
+                                                <div class="form-group" ng-class="{ 'has-error' : loginbox.Password.$invalid && (loginbox.Password.$dirty || submitted)}">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="password" name="Password" class="form-control" placeholder="Password" title="Please enter the Password" ng-model="login.Password" ng-required="true" />
+                                                            <i class="ace-icon fa fa-lock"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="loginbox.Password.$error.required && (loginbox.Password.$dirty || submitted)" class="help-block">
+                                                        Your Password is required.</p>
+                                                </div>
+                                                <div class="space"></div>
+
+                                                <div class="clearfix">
+
+                                                    <label class="col-md-12 {{ErrorClass}}" style="text-align: center;font-family: Tahoma, Geneva, Sans-Serif;">
+                                                        <span ng-bind="ErrorMessageShown"></span>
+                                                     
+                                                    </label>
+                                                    <button type="submit" ng-disabled=" loginbox.$invalid" ng-click="LoginClick()" title="Login" 
+                                                    class="width-35 pull-right btn btn-sm btn-primary">
+                                                        <i class="ace-icon fa fa-key"></i>
+                                                        <span class="bigger-110">Login</span>
+                                                    </button>
+
+                                                </div>
+
+                                                <div class="space-4"></div>
+                                                
+                                            </fieldset>
+                                             
+                                        </form>
+
+                                    </div>
+
+                                    <!-- /.widget-main -->
+
+                                    <div class="toolbar clearfix">
+                                        <div>
+                                            <a href="#" data-target="#forgot-box" class="forgot-password-link"
+                                             ng-click="ClearLoginForm()" title="I forgot my password">
+                                                <i class="ace-icon fa fa-arrow-left"></i> I forgot my password
+                                            </a>
+                                        </div>
+
+                                        <div>
+                                            <a href="#" data-target="#signup-box" class="user-signup-link" title=" I want to register">
+                                                I want to register
+                                                <i class="ace-icon fa fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.widget-body -->
+                            </div>
+                            <!-- /.login-box -->
+
+                            <div id="forgot-box" style="margin-top:15%" ng-controller="ForgotCtrl" class="forgot-box widget-box no-border">
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <h4 class="header red lighter bigger">
+                                            <i class="ace-icon fa fa-key"></i> Forgot Password
+                                        </h4>
+
+                                        <div class="space-6"></div>
+                                        <p>
+                                            Enter your email id to receive instructions
+                                        </p>
+
+                                        <form name="forgotbox" ng-submit="submitForm()" novalidate>
+                                            <fieldset>
+                                                
+                                                <div class="form-group" ng-class="{ 'has-error' :forgotbox.Email.$invalid && !forgotbox.Email.$pristine }">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="email" name="Email" class="form-control" ng-model="forgot.Email"
+                                                             title="Please enter the Email address" placeholder="Email" ng-required="true" />
+                                                            <i class="ace-icon fa fa-envelope"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="forgotbox.Email.$error.required && (forgotbox.Email.$dirty || submitted)" class="help-block">Email is required.</p>
+                                                    <p ng-show="forgotbox.Email.$error.email && (forgotbox.Email.$dirty || submitted)" class="help-block">Enter a valid email.</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <label class="col-md-12 {{ErrorClass}}" style="text-align: center;font-family: Tahoma, Geneva, Sans-Serif;">
+                                                        
+                                                        
+                                                         <span ng-bind="ErrorMessageShown"></span>
+                                                      
+                                                    </label>
+                                                    <button type="submit" ng-disabled="forgotbox.$invalid" ng-click="ForgotClick()" title="Send Reminder" class="width-50 pull-right btn btn-sm btn-danger">
+                                                        <i class="ace-icon fa fa-lightbulb-o"></i>
+                                                        <span class="bigger-110">Send Reminder !</span>
+                                                    </button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <!-- /.widget-main -->
+
+                                    <div class="toolbar center">
+                                        <a href="#" data-target="#login-box" class="back-to-login-link" title="Back to login"
+                                         ng-click="ClearForgetMailRemainderMessage()">
+                                            Back to login
+                                            <i class="ace-icon fa fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- /.widget-body -->
+                            </div>
+                            <!-- /.forgot-box -->
+
+                            <div id="signup-box" ng-controller="RegisterCtrl" class="signup-box widget-box no-border">
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <h4 class="header green lighter bigger">
+                                            <i class="ace-icon fa fa-users blue"></i> New User Registration
+                                        </h4>
+
+                                        <div class="space-6"></div>
+                                        <p> Enter your details to begin: </p>
+
+                                        <form name="registerbox" ng-submit="submitForm()" novalidate>
+                                            <fieldset>
+                                                
+                                                <div class="form-group" ng-class="{ 'has-error' : registerbox.FirstName.$invalid && (registerbox.FirstName.$dirty || submitted)}">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="text" name="FirstName" class="form-control" 
+                                                                   ng-model="register.FirstName" placeholder="First Name"  ng-minlength="3" ng-maxlength="12" 
+                                                                   title="Please enter the First Name" ng-required="true" ng-pattern ="/^[a-zA-Z\s]*$/" />
+                                                            <i class="ace-icon fa fa-user"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="registerbox.FirstName.$error.required && (registerbox.FirstName.$dirty || submitted)" class="help-block">Please enter the First Name</p>
+                                                    <p ng-show="registerbox.FirstName.$error.pattern && (registerbox.FirstName.$dirty || submitted)" class="help-block">First Name accepts only characters</p>
+                                                    <p ng-show="registerbox.FirstName.$error.minlength && (registerbox.FirstName.$dirty || submitted)" class="help-block">First Name is too short.(Minimum 3 character)</p>
+                                                </div>
+
+                                                <div class="form-group" ng-class="{ 'has-error' : registerbox.LastName.$invalid && (registerbox.LastName.$dirty || submitted)}">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="text" name="LastName" class="form-control" ng-model="register.LastName" 
+                                                                   placeholder="Last Name" title="Please enter the Last Name" ng-required="true"  ng-pattern ="/^[a-zA-Z\s]*$/"/>
+                                                            <i class="ace-icon fa fa-user"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="registerbox.LastName.$error.required && (registerbox.LastName.$dirty || submitted)" class="help-block">Please enter the Last Name</p>
+                                                    <p ng-show="registerbox.LastName.$error.pattern && (registerbox.LastName.$dirty || submitted)" class="help-block">Last Name accepts only characters</p>
+                                                </div>
+
+                                                <div class="form-group" ng-class="{ 'has-error' :registerbox.Email.$invalid && !registerbox.Email.$pristine }">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="email" name="Email" class="form-control" ng-model="register.Email" placeholder="Email"
+                                                             title="Please enter the Email Address" ng-required="true" />
+                                                            <i class="ace-icon fa fa-envelope"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="registerbox.Email.$error.required && (registerbox.Email.$dirty || submitted)" class="help-block">Please enter the Email Address</p>
+                                                    <p ng-show="registerbox.Email.$error.email && (registerbox.Email.$dirty || submitted)" class="help-block">Enter a valid email.</p>
+                                                </div>
+
+                                                <div class="form-group" ng-class="{ 'has-error' : registerbox.UserName.$invalid && (registerbox.UserName.$dirty || submitted)}">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="text" name="UserName" class="form-control" ng-model="register.UserName"
+                                                                    placeholder="Display Name" title="Please enter the Display Name" ng-pattern ="/^[a-zA-Z\s]*$/"
+                                                                   ng-minlength="3" ng-maxlength="12" ng-required="true" />
+                                                            <i class="ace-icon fa fa-user"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="registerbox.UserName.$error.required && (registerbox.UserName.$dirty || submitted)" class="help-block">Please enter the Display Name</p>
+                                                    <p ng-show="registerbox.UserName.$error.minlength && (registerbox.UserName.$dirty || submitted)" class="help-block">Username is too short.</p>
+                                                    <p ng-show="registerbox.UserName.$error.maxlength && (registerbox.UserName.$dirty || submitted)" class="help-block">Username is too long.</p>
+                                                     <p ng-show="registerbox.UserName.$error.pattern && (registerbox.UserName.$dirty || submitted)" class="help-block">User Name accepts only characters</p>
+                                                </div>
+
+                                                <div class="form-group" 
+                                                ng-class="{ 'has-error' : registerbox.password.$invalid && (registerbox.password.$dirty || submitted)}">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="password" name="password" class="form-control" ng-model="register.Password" placeholder="Password" title="Please enter the Password" ng-minlength="4" ng-maxlength="12" ng-required="true" />
+                                                            <i class="ace-icon fa fa-lock"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="registerbox.password.$error.required && (registerbox.password.$dirty || submitted)" class="help-block">Please enter the Password</p>
+                                                    <p ng-show="registerbox.password.$error.minlength && (registerbox.password.$dirty || submitted)" class="help-block">Password is too short.</p>
+                                                    <p ng-show="registerbox.password.$error.maxlength && (registerbox.password.$dirty || submitted)" class="help-block">Password is too long.</p>
+                                                </div>
+
+                                                <div class="form-group" ng-class="{ 'has-error' : registerbox.ConfirmPassword.$invalid && (registerbox.ConfirmPassword.$dirty || submitted)}">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="password" name="ConfirmPassword" class="form-control" ng-model="register.ConfirmPassword" placeholder="Confirm Password" title="Please enter the Confirm Password"
+                                                             ng-compare="password" ng-required="true" />
+                                                            <i class="ace-icon fa fa-retweet"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="registerbox.ConfirmPassword.$error.required && (registerbox.ConfirmPassword.$dirty || submitted)" class="help-block">Please enter the Confirm Password</p>
+                                                    <p ng-show="registerbox.ConfirmPassword.$error.compare && (registerbox.ConfirmPassword.$dirty || submitted)" class="help-block">Confirm password does not match.</p>
+                                                </div>
+
+                                                <div class="form-group" ng-class="{ 'has-error' : registerbox.PhoneNumber.$invalid && (registerbox.PhoneNumber.$dirty || submitted) }">
+                                                    <label class="block clearfix">
+                                                        <span class="block input-icon input-icon-right">
+                                                            <input type="text" name="PhoneNumber" class="form-control" ng-model="register.PhoneNumber" placeholder="Mobile" title="Please enter the Mobile Number" ng-pattern="/^[0-9]\d{9}$/" maxlength="10" ng-required="true" />
+                                                            <i class="ace-icon fa fa-phone"></i>
+                                                        </span>
+                                                    </label>
+                                                    <p ng-show="registerbox.PhoneNumber.$error.required && (registerbox.PhoneNumber.$dirty || submitted)" class="help-block">Please enter the Mobile Number</p>
+                                                    <p ng-show="registerbox.PhoneNumber.$error.pattern && (registerbox.PhoneNumber.$dirty || submitted)" class="help-block">Enter a valid contact number.</p>
+                                                </div>
+                                                <div class="col-sm-12 align-right">
+                                                    <p> * All fields are mandatory</p>
+                                                </div>
+                                                <div class="space-6"></div>
+
+                                                <div class="clearfix">
+                                                    <label class="col-md-12 {{ErrorClass}}"   style="text-align: center;font-family: Tahoma, Geneva, Sans-Serif;">
+                                                        
+                                                      <span ng-bind="ErrorMessageShown"></span>
+                                                      
+                                                    </label>
+                                                    <button type="reset" ng-click="registerreset()" title="Reset" class="width-30 pull-left btn btn-sm">
+                                                        <i class="ace-icon fa fa-refresh"></i>
+                                                        <span class="bigger-110">Reset</span>
+                                                    </button>
+
+                                                    <button type="button" ng-disabled="registerbox.$invalid" ng-click="registerClick()" title="Register" class="width-65 pull-right btn btn-sm btn-success">
+                                                        <span class="bigger-110">Register</span>
+
+                                                        <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                                                    </button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+
+                                    <div class="toolbar center">
+                                        <a href="#" data-target="#login-box" class="back-to-login-link" ng-click="ClearRegisterationErrorMessage()">
+                                            <i class="ace-icon fa fa-arrow-left"></i> Back to login
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- /.widget-body -->
+                            </div>
+                            <!-- /.signup-box -->
+                        </div>
+                        <!-- /.position-relative -->
+                        <!--<div class="navbar-fixed-top align-right">
+                            <br />
+                            &nbsp;
+                            <a id="btn-login-light" href="#">Light</a>
+
+                            &nbsp;
+                            <span class="blue">/</span>
+                            &nbsp;
+                            <a id="btn-login-blur" href="#">Blur</a>
+                            &nbsp;
+                            &nbsp;
+                            <a id="btn-login-dark" href="#">Dark</a>
+                            &nbsp; &nbsp; &nbsp;
+                        </div>-->
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.main-content -->
+    </div>
+    <!-- /.main-container -->
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script src="assets/js/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+    <!--<script type="text/javascript">
+        if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>-->
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(document).on('click', '.toolbar a[data-target]', function (e) {
+                e.preventDefault();
+                var target = $(this).data('target');
+                $('.widget-box.visible').removeClass('visible');//hide others
+                $(target).addClass('visible');//show target
+            });
+        });
+
+
+
+        //you don't need this, just used for changing background
+        jQuery(function ($) {
+            $('#btn-login-dark').on('click', function (e) {
+                $('body').attr('class', 'login-layout');
+                $('#id-text2').attr('class', 'white');
+                $('#id-company-text').attr('class', 'blue');
+
+                e.preventDefault();
+            });
+            $('#btn-login-light').on('click', function (e) {
+                $('body').attr('class', 'login-layout light-login');
+                $('#id-text2').attr('class', 'grey');
+                $('#id-company-text').attr('class', 'blue');
+
+                e.preventDefault();
+            });
+            $('#btn-login-blur').on('click', function (e) {
+                $('body').attr('class', 'login-layout blur-login');
+                $('#id-text2').attr('class', 'white');
+                $('#id-company-text').attr('class', 'light-blue');
+
+                e.preventDefault();
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
