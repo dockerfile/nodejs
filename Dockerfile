@@ -6,6 +6,7 @@
 
 # Pull base image.
 FROM dockerfile/python
+RUN npm install
 
 # Install Node.js
 RUN \
